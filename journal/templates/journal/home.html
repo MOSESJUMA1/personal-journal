@@ -1,0 +1,17 @@
+{% extends 'journal/base.html' %}
+{% block content %}
+<h1 style="font-size:2rem; margin-bottom:0.3rem;">Your entries</h1>
+<p style="color:var(--muted); margin-bottom:2rem;">A quiet place for what's on your mind.</p>
+
+{% for entry in entries %}
+<div style="background:var(--paper); color:var(--paper-text); border-radius:8px; padding:1.5rem; margin-bottom:1.2rem; border-left:4px solid var(--gold);">
+  <h3 style="margin-bottom:0.4rem;">{{ entry.title|default:"Untitled" }}</h3>
+  <p style="font-size:0.8rem; color:var(--muted); margin-bottom:0.8rem;">{{ entry.created_at|date:"M d, Y — g:i A" }}{% if entry.mood %} · {{ entry.mood }}{% endif %}</p>
+  <p style="line-height:1.6;">{{ entry.content|truncatewords:40 }}</p>
+</div>
+{% empty %}
+<p style="color:var(--muted);">No entries yet. Start writing.</p>
+{% endfor %}
+
+<a href="{% url 'new_entry' %}" class="btn" style="margin-top:1rem;">+ New entry</a>
+{% endblock %}

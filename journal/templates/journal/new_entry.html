@@ -1,0 +1,22 @@
+{% extends 'journal/base.html' %}
+{% block content %}
+<h1 style="font-size:1.8rem; margin-bottom:0.3rem;">New entry</h1>
+<p style="color:var(--muted); margin-bottom:2rem;">Write what's on your mind.</p>
+
+<form method="post">
+  {% csrf_token %}
+  <div style="margin-bottom:1rem;">
+    <label style="display:block; margin-bottom:0.4rem; font-size:0.9rem;">Title (optional)</label>
+    <input type="text" name="title" style="width:100%; padding:0.7rem; border-radius:4px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:var(--paper);">
+  </div>
+  <div style="margin-bottom:1rem;">
+    <label style="display:block; margin-bottom:0.4rem; font-size:0.9rem;">Mood (optional)</label>
+    <input type="text" name="mood" placeholder="e.g. calm, tired, hopeful" style="width:100%; padding:0.7rem; border-radius:4px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:var(--paper);">
+  </div>
+  <div style="margin-bottom:1.5rem;">
+    <label style="display:block; margin-bottom:0.4rem; font-size:0.9rem;">Entry</label>
+    <textarea name="content" required rows="10" style="width:100%; padding:0.7rem; border-radius:4px; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.05); color:var(--paper); font-family:'Inter', sans-serif; resize:vertical;"></textarea>
+  </div>
+  <button type="submit" class="btn">Save entry</button>
+</form>
+{% endblock %}
